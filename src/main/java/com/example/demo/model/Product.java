@@ -4,7 +4,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import org.springframework.data.relational.core.mapping.Column;
+// import org.springframework.data.relational.core.mapping.Column;
 
 import lombok.Data;
 
@@ -15,9 +15,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(value = "product_name")
-    private String name;
+    private String productName;
     private String shortDesc;
     private Integer price;
     private Integer stock;

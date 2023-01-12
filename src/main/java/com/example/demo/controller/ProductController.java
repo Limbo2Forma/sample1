@@ -16,17 +16,17 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping(value = "/get/{id}")
+    @GetMapping(value = "/{id}")
     public Product getProduct(@PathVariable Long id) {
         return productService.getProduct(id);
     }
 
-    @PostMapping(value = "/create")
+    @PostMapping(value = "/")
     public void createProduct(@RequestBody Product product) {
         productService.createProduct(product);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public void deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
     }
