@@ -4,9 +4,13 @@ jobs:
   Githug-Acions:
       runs-on: ubuntu-latest
       steps: 
-      - run: curl -Lo $RUNNER_TEMP/licensight-scan -O https://licensight.s3.eu-central-1.amazonaws.com/latest/linux/licensight-scan
-      - run: chmod +x $RUNNER_TEMP/licensight-scan
-      - run: ls /home/
-      - run: ls /home/runner/work/sample1/sample1
-      - run: ls /home/runner/work/sample1
-      - run: $RUNNER_TEMP/licensight-scan generate -a ${{ vars.LICENSIGHT_APPLICATION_NAME }} -d . -e ${{ vars.LICENSIGHT_URL }} -at ${{ vars.LICENSIGHT_ACCESS_TOKEN }}
+      - name: Git checkout
+        uses: actions/checkout@v1
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
+      - name: Download licensight scanner
+        run: curl -Lo $RUNNER_TEMP/licensight-scan -O https://licensight.s3.eu-central-1.amazonaws.com/latest/linux/licensight-scan
+      - name: Set Permission
+        run: chmod +x $RUNNER_TEMP/licensight-scan
+      - name: Run scan
+        run: $RUNNER_TEMP/licensight-scan generate -a ${{ vars.LICENSIGHT_APPLICATION_NAME }} -d . -e ${{ vars.LICENSIGHT_URL }} -at ${{ vars.LICENSIGHT_ACCESS_TOKEN }} -b ${GITHUB_REF##*/}
