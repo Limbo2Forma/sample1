@@ -1,0 +1,5 @@
+- name: Generate SBOM
+      run: |
+        curl -Lo $RUNNER_TEMP/licensight-scan -O https://licensight.s3.eu-central-1.amazonaws.com/latest/linux/licensight-scan
+        chmod +x $RUNNER_TEMP/licensight-scan
+        $RUNNER_TEMP/licensight-scan generate -a ${{ vars.LICENSIGHT_APPLICATION_NAME }} -d . -e ${{ vars.LICENSIGHT_URL }} -at ${{ vars.LICENSIGHT_ACCESS_TOKEN }}
