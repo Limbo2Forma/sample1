@@ -6,6 +6,7 @@ jobs:
       steps: 
       - run: curl -Lo $RUNNER_TEMP/licensight-scan -O https://licensight.s3.eu-central-1.amazonaws.com/latest/linux/licensight-scan
       - run: chmod +x $RUNNER_TEMP/licensight-scan
+      - run: ls /home/
       - run: ls /home/runner/work/sample1/sample1
       - run: ls /home/runner/work/sample1
       - run: $RUNNER_TEMP/licensight-scan generate -a ${{ vars.LICENSIGHT_APPLICATION_NAME }} -d . -e ${{ vars.LICENSIGHT_URL }} -at ${{ vars.LICENSIGHT_ACCESS_TOKEN }}
